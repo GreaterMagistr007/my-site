@@ -10,9 +10,9 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     command: --sql_mode=''
-    networks:
-     sitenet:
-        ipv4_address: 192.168.192.3
+#    networks:
+#     sitenet:
+#        ipv4_address: 192.168.192.3
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -27,13 +27,13 @@ services:
       - mariadb
     # ports:
     #   - 8081:80
-    networks:
-      sitenet:
-        ipv4_address: 192.168.192.4
+#    networks:
+#      sitenet:
+#        ipv4_address: 192.168.192.4
 
   server:
     build:
-      context: ./etc/php
+      context: ./etc/nginx
       dockerfile: Dockerfile
     container_name: ${PROJECT_SERVER_CONTAINER_NAME}
     volumes:
@@ -42,20 +42,20 @@ services:
       - ./:/home/user/services/
     environment:
       COMPOSER_ALLOW_SUPERUSER: 1
-    extra_hosts:
-      - "${MYSQL_CONTAINER_NAME}:192.168.192.3"
+#    extra_hosts:
+#      - "${MYSQL_CONTAINER_NAME}:192.168.192.3"
     depends_on:
       - mariadb
-    networks:
-      sitenet:
-        ipv4_address: 192.168.192.2
+#    networks:
+#      sitenet:
+#        ipv4_address: 192.168.192.2
 
-networks:
-  sitenet:
-    name: sitenet
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: "192.168.192.0/24"
-          gateway: "192.168.192.1"
+#networks:
+#  sitenet:
+#    name: sitenet
+#    driver: bridge
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: "192.168.192.0/24"
+#          gateway: "192.168.192.1"
