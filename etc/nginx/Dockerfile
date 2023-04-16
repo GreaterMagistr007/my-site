@@ -5,6 +5,8 @@ RUN apt upgrade -y
 RUN apt -y install software-properties-common
 RUN add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu focal universe"
 RUN apt update  -y
+# Ставим php:
+ RUN apt install php-common libapache2-mod-php php-cli -y
 # Некоторые инструменты
 RUN apt -y install apt-utils git curl mysql-client libmysqlclient-dev libffi-dev build-essential libssl-dev imagemagick graphicsmagick whois dnsutils libnss3-tools
 # Ставим Composer
