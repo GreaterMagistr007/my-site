@@ -37,8 +37,6 @@ services:
       dockerfile: Dockerfile
     container_name: ${PROJECT_SERVER_CONTAINER_NAME}
     volumes:
-      - ./etc/php/conf/php.ini:/usr/local/etc/php/php.ini
-      - ./etc/mkcert/ssl/rootCA.pem:/usr/local/share/ca-certificates/ca.crt
       - ./:/home/user/services/
     environment:
       COMPOSER_ALLOW_SUPERUSER: 1

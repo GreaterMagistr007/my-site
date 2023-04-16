@@ -1,0 +1,28 @@
+server {
+    listen 80;
+
+    server_name server.loc;
+    root /home/user/services/server.loc/;
+
+    # logging
+    access_log /var/log/nginx/access/server.loc.log;
+    error_log /var/log/nginx/error/server.loc.log error;
+
+    # index.php
+    index index.php;
+
+    # index.php fallback
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    # handle .php
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_buffer_size 1000k;
+        fastcgi_buffers 100 100k;
+        fastcgi_read_timeout 120;
+        # With php-fpm (or other unix sockets):
+        fastcgi_pass vigbo-php56:9000;
+    }
+}
