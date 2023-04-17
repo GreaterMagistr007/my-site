@@ -22,8 +22,8 @@
 
 
 <h2>Инструкция</h2>
-1. скопировать содержимое /etc/hosts в конец своего hosts
-    * Windows: C:\Windows\System32\drivers\etc файл hosts
-    * Lixnu: /etc/hosts
-2. Выполнить команду docker-compose up и смотреть на магию
-3. по адресу http://phpmyadmin.loc/ резко стал доступен phpmyadmin
+1. скопировать содержимое /etc/hosts в конец своего hosts<br>
+    * Windows: C:\Windows\System32\drivers\etc файл hosts<br>
+    * Lixnu: /etc/hosts<br>
+2. Выполнить команду docker-compose up и смотреть на магию<br>
+3. по адресу http://phpmyadmin.loc/ резко стал доступен phpmyadmin<br>
