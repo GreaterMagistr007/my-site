@@ -37,3 +37,4 @@ RUN ufw allow 443
 #CMD add-apt-repository ppa:ondrej/php -y && sh
 # Перезапустим apache
 #CMD systemctl restart apache2.service && sh
+CMD service apache2 restart && sh
