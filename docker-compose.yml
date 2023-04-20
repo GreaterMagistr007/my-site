@@ -10,9 +10,9 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     command: --sql_mode=''
-#    networks:
-#     sitenet:
-#        ipv4_address: 192.168.192.3
+    networks:
+     sitenet:
+        ipv4_address: 192.168.192.3
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -26,34 +26,64 @@ services:
     depends_on:
       - mariadb
     ports:
-      - 80:80
-#    networks:
-#      sitenet:
-#        ipv4_address: 192.168.192.4
+      - 8080:80
+    networks:
+      sitenet:
+        ipv4_address: 192.168.192.4
 
   server:
     build:
-      context: ./etc/nginx
+      context: ./etc/ubuntu
       dockerfile: Dockerfile
     container_name: ${PROJECT_SERVER_CONTAINER_NAME}
     volumes:
       - ./:/home/user/services/
     environment:
       COMPOSER_ALLOW_SUPERUSER: 1
-#    extra_hosts:
-#      - "${MYSQL_CONTAINER_NAME}:192.168.192.3"
+    extra_hosts:
+      - "server.loc:127.0.0.1"
+      - "phpmyadmin.loc:192.168.192.4"
+      - "${MYSQL_CONTAINER_NAME}:192.168.192.3"
     depends_on:
       - mariadb
+    ports:
+      - 80:80
+      - 443:443
+    tty: true
+    networks:
+      sitenet:
+        ipv4_address: 192.168.192.2
+
+#  server:
+#    build:
+#      context: ./etc/nginx
+#      dockerfile: Dockerfile
+#    container_name: ${PROJECT_SERVER_CONTAINER_NAME}
+#    volumes:
+#      - ./:/home/user/services/
+##      - ./etc/nginx/conf/sites-enabled/:/etc/nginx/sites-enabled/
+##      - ./etc/nginx/conf/sites-enabled/:/etc/nginx/sites-available/
+##      - ./etc/nginx/conf/log/:/var/log/nginx/
+#    environment:
+#      COMPOSER_ALLOW_SUPERUSER: 1
+#    extra_hosts:
+#      - "server.loc:127.0.0.1"
+#      - "phpmyadmin.loc:192.168.192.3"
+#      - "${MYSQL_CONTAINER_NAME}:192.168.192.3"
+#    depends_on:
+#      - mariadb
+#    ports:
+#      - 80:80
 #    networks:
 #      sitenet:
 #        ipv4_address: 192.168.192.2
 
-#networks:
-#  sitenet:
-#    name: sitenet
-#    driver: bridge
-#    ipam:
-#      driver: default
-#      config:
-#        - subnet: "192.168.192.0/24"
-#          gateway: "192.168.192.1"
+networks:
+  sitenet:
+    name: sitenet
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.192.0/24"
+          gateway: "192.168.192.1"

@@ -2,7 +2,7 @@ server {
     listen 80;
 
     server_name server.loc;
-    root /home/user/services/server.loc/;
+    root /home/user/services/server.loc/public;
 
     # logging
     access_log /var/log/nginx/access/server.loc.log;
@@ -18,11 +18,16 @@ server {
 
     # handle .php
     location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
+        fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+        if (!-f $document_root$fastcgi_script_name) {return 404;}
+        fastcgi_param HTTP_PROXY "";
+        include fastcgi_params;
+        fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $request_filename;
+
         fastcgi_buffer_size 1000k;
         fastcgi_buffers 100 100k;
         fastcgi_read_timeout 120;
-        # With php-fpm (or other unix sockets):
-        fastcgi_pass vigbo-php56:9000;
     }
 }
