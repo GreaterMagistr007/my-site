@@ -25,11 +25,8 @@
 1. скопировать содержимое /etc/hosts в конец своего hosts<br>
     * Windows: C:\Windows\System32\drivers\etc файл hosts<br>
     * Lixnu: /etc/hosts<br>
-
-[//]: # (2. ТОЛЬКО ЕСЛИ РАБОТА ПОД Windows:<br>)
-
-[//]: # (    * выполнить в консоли winget install GnuWin32.Make<br>)
 3. Выполнить команду docker-compose up и смотреть на магию<br>
-4. при первом запуске настроить bakend: ./bin/install-apache.sh
-4. по адресу http://phpmyadmin.loc:8080/ резко стал доступен phpmyadmin<br>
-5. по адресу http://server.loc/ резко стал доступен управляющий ресурс<br>
+4. при первом запуске настроить backend: ./bin/install-apache.sh<br>
+   Команда может просить иногда вводить в некоторые данные (временная зона, например)<br>
+5. по адресу http://phpmyadmin.loc:8080/ резко стал доступен phpmyadmin<br>
+6. по адресу http://server.loc/ резко стал доступен управляющий ресурс<br>
