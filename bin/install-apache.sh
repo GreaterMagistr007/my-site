@@ -13,7 +13,6 @@ if [ "$(docker ps -q -f name=project_server)" ]; then
   docker exec -it project_server bash -c "apt install libapache2-mod-php8.2 -y"
   docker exec -it project_server bash -c "apt install php8.2-fpm -y"
 
-#  docker exec -it project_server bash -c "systemctl restart apache2.service"
   docker exec -it project_server bash -c "service apache2 restart"
   echo "Скрипт успешно отработал и понаставил всякой херни в контейнеры"
   sleep
