@@ -22,7 +22,7 @@
 
 
 <h2>Инструкция</h2>
-0. Выполнить git clone https://github.com/GreaterMagistr007/my-site/ в нужной директории. В ней создастся папка "my-site"<br>
+0. Выполнить <b>git clone https://github.com/GreaterMagistr007/my-site/ --recursive</b> в нужной директории. В ней создастся папка "my-site"<br>
 1. скопировать содержимое /etc/hosts в конец своего hosts<br>
     * Windows: C:\Windows\System32\drivers\etc файл hosts<br>
     * Lixnu: /etc/hosts<br>
