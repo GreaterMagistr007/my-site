@@ -1,0 +1,3 @@
+[submodule "server.loc"]
+	path = server.loc
+	url = https://github.com/GreaterMagistr007/server.loc
