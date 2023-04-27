@@ -19,6 +19,3 @@ RUN apt install apache2 apache2-utils -y
 RUN apt install ufw -y
 RUN ufw allow 80
 RUN ufw allow 443
-
-# Перезапустим apache
-CMD service apache2 restart && sh

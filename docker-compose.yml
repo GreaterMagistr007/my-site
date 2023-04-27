@@ -54,30 +54,6 @@ services:
       sitenet:
         ipv4_address: 192.168.192.2
 
-#  server:
-#    build:
-#      context: ./etc/nginx
-#      dockerfile: Dockerfile
-#    container_name: ${PROJECT_SERVER_CONTAINER_NAME}
-#    volumes:
-#      - ./:/home/user/services/
-##      - ./etc/nginx/conf/sites-enabled/:/etc/nginx/sites-enabled/
-##      - ./etc/nginx/conf/sites-enabled/:/etc/nginx/sites-available/
-##      - ./etc/nginx/conf/log/:/var/log/nginx/
-#    environment:
-#      COMPOSER_ALLOW_SUPERUSER: 1
-#    extra_hosts:
-#      - "server.loc:127.0.0.1"
-#      - "phpmyadmin.loc:192.168.192.3"
-#      - "${MYSQL_CONTAINER_NAME}:192.168.192.3"
-#    depends_on:
-#      - mariadb
-#    ports:
-#      - 80:80
-#    networks:
-#      sitenet:
-#        ipv4_address: 192.168.192.2
-
 networks:
   sitenet:
     name: sitenet
