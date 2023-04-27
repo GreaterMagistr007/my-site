@@ -13,6 +13,14 @@ if [ "$(docker ps -q -f name=project_server)" ]; then
   docker exec -it project_server bash -c "apt install libapache2-mod-php8.2 -y"
   docker exec -it project_server bash -c "apt install php8.2-fpm -y"
 
+  # копируем конфиги для apache
+  docker exec -it project_server bash -c "cp /home/user/services/etc/ubuntu/apache/ports.conf /etc/apache2/ports.conf"
+
+  # копируем конфиги для nginx
+  docker exec -it project_server bash -c "cp /home/user/services/etc/ubuntu/nginx/sites-available/server.loc /etc/nginx/sites-available/server.loc"
+  docker exec -it project_server bash -c "cp /home/user/services/etc/ubuntu/nginx/sites-available/server.loc /etc/nginx/sites-enabled/server.loc"
+
+  docker exec -it project_server bash -c "service nginx restart"
   docker exec -it project_server bash -c "service apache2 restart"
 
   docker exec -it project_server bash -c "apt install php-cli unzip -y"
