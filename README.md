@@ -35,7 +35,9 @@
 
 
 <h2>Инструкция</h2>
-0. Выполнить <b>git clone https://github.com/GreaterMagistr007/my-site/ --recursive</b> в нужной директории. В ней создастся папка "my-site"<br>
+0. Выполнить <br>
+   <b>git clone https://github.com/GreaterMagistr007/my-site/ --recursive && cd my-site && git submodule foreach --recursive git checkout master</b><br>
+   в нужной директории. В ней создастся папка "my-site"<br>
 1. скопировать содержимое <b>/etc/hosts </b> в конец своего hosts<br>
     * Windows: C:\Windows\System32\drivers\etc файл hosts<br>
     * Lixnu: /etc/hosts<br>
