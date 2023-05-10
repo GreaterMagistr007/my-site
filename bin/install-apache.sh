@@ -36,6 +36,8 @@ if [ "$(docker ps -q -f name=project_server)" ]; then
   docker exec -it project_server bash -c "service nginx restart"
   docker exec -it project_server bash -c "service apache2 restart"
 
+  # Ставим mysql
+  docker exec -it project_server bash -c "apt install mysql-server mysql-client -y"
   # Ставим Composer
   docker exec -it project_server bash -c "apt install php-cli unzip -y"
   docker exec -it project_server bash -c "curl -sS https://getcomposer.org/installer -o composer-setup.php"
