@@ -32,12 +32,17 @@ if [ "$(docker ps -q -f name=project_server)" ]; then
   docker exec -it project_server bash -c "cp /home/user/services/etc/ubuntu/nginx/sites-available/server.loc /etc/nginx/sites-available/server.loc"
   docker exec -it project_server bash -c "cp /home/user/services/etc/ubuntu/nginx/sites-available/server.loc /etc/nginx/sites-enabled/server.loc"
 
+  docker exec -it project_server bash -c "cp /home/user/services/etc/ubuntu/php82.ini /etc/php/8.2/cli/php.ini"
+  docker exec -it project_server bash -c "a2enmod rewrite"
+
   # Перезапустим apache и nginx
   docker exec -it project_server bash -c "service nginx restart"
   docker exec -it project_server bash -c "service apache2 restart"
 
   # Ставим mysql
   docker exec -it project_server bash -c "apt install mysql-server mysql-client -y"
+  docker exec -it project_server bash -c "apt-get install php-mysql -y"
+
   # Ставим Composer
   docker exec -it project_server bash -c "apt install php-cli unzip -y"
   docker exec -it project_server bash -c "curl -sS https://getcomposer.org/installer -o composer-setup.php"
