@@ -47,3 +47,4 @@
 4. по адресу <b>http://phpmyadmin.loc:8080/ </b> резко стал доступен phpmyadmin<br>
 5. по адресу <b>http://server.loc/ </b> резко стал доступен управляющий ресурс<br>
 6. Когда консоль отработает, нужно проверить, доступны ли основные ресурсы: <b>http://server.loc </b> и <b>http://site.loc </b>
+7. Если выдается ошибка "could not find driver", то нужно рестартануть apache2 и nginx в контейнере project_server
